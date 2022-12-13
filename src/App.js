@@ -12,7 +12,7 @@ function App() {
         <p>React Interactive App</p>
       </header>
       <button onClick={carouselClickHandler}>Toggle Carousel</button>
-      {showCarousel ? <ImageCarousel /> : null}
+      <div className="App-Content">{showCarousel ? <ImageCarousel /> : null}</div>
     </div>
   );
 }

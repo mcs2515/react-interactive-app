@@ -13,19 +13,19 @@ export default function ImageCarousel() {
         infiniteLoop={true}
         showStatus={false}
       >
-        <div>
+        <div className="imageContainer">
           <img alt="" src="https://via.placeholder.com/150" />
         </div>
-        <div>
+        <div className="imageContainer">
           <img alt="" src="https://via.placeholder.com/350x600" />
         </div>
-        <div>
+        <div className="imageContainer">
           <img alt="" src="https://via.placeholder.com/1200x900" />
         </div>
-        <div>
+        <div className="imageContainer">
           <img alt="" src="https://via.placeholder.com/835x1000" />
         </div>
-        <div>
+        <div className="imageContainer">
           <img alt="" src="https://via.placeholder.com/1600x600" />
         </div>
       </Carousel>
