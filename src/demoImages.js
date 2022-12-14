@@ -3,9 +3,9 @@ const linkPrefix = "https://via.placeholder.com/";
 export const demoImages = [
   {
     width: 350,
-    height: 700,
-    alt: "image 350x700",
-    src: linkPrefix + "350x700"
+    height: 800,
+    alt: "image 350x800",
+    src: linkPrefix + "350x800"
   },
   {
     width: 150,

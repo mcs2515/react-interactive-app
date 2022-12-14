@@ -17,6 +17,7 @@
   position: relative;
   margin: 0 auto;
   max-height: 80vh;
+  height: auto;
   background-color: #282c34;
   aspect-ratio: 0.75;
   margin-top: 20px;

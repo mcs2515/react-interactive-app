@@ -17,3 +17,12 @@
   height: auto;
   vertical-align: top;
 }
+
+.carousel.carousel-slider .control-arrow {
+  width: 80px;
+  height: 80px;
+  top: 50%;
+  transform: translateY(-50%);
+  margin: 0 5px;
+  border-radius: 40px;
+}
