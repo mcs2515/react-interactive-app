@@ -26,6 +26,10 @@ export default function ImageCarousel() {
 
   useEffect(() => {
     resizeImage();
+  }, []);
+
+  useEffect(() => {
+    resizeImage();
   }, [dimensions]);
 
   useEffect(() => {

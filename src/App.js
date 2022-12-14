@@ -1,6 +1,7 @@
 import { useState } from "react";
 import ImageCarousel from "./Carousel";
 import "./css/App.css";
+import Lightbox from "./Lightbox";
 
 function App() {
   const [showCarousel, setShowCarousel] = useState(false);
@@ -11,8 +12,12 @@ function App() {
       <header className="App-header">
         <p>React Interactive App</p>
       </header>
+
       <button onClick={carouselClickHandler}>Toggle Carousel</button>
-      <div className="App-Content">{showCarousel ? <ImageCarousel /> : null}</div>
+      <div className="App-Content">
+        <Lightbox showCarousel={showCarousel} setShowCarousel={setShowCarousel} />
+        {showCarousel ? <ImageCarousel /> : null}
+      </div>
     </div>
   );
 }
