@@ -1,8 +1,9 @@
 .carousel-root {
-  outline: none;
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 100%;
+  overflow: hidden;
 }
 
 .carousel .imageContainer {
@@ -15,7 +16,6 @@
   width: auto;
   max-height: 100%;
   height: auto;
-  vertical-align: top;
 }
 
 .carousel.carousel-slider .control-arrow {

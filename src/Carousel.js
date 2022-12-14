@@ -5,27 +5,42 @@ import "./css/Carousel.css";
 import { useEffect, useRef, useState } from "react";
 
 export default function ImageCarousel() {
-  const carouselRef = useRef();
+  const imageContainerRef = useRef();
   const [maxImageHeight, setMaxImageHeight] = useState("auto");
+  const [dimensions, setDimensions] = useState({
+    height: window.innerHeight,
+    width: window.innerWidth
+  });
 
-  const checkImageSize = (index, img) => {
-    const width = img.props.children.props.width;
-    const height = img.props.children.props.height;
-    console.log("clicked");
-    if (width < height) {
-      const parentHeight = document.querySelector(".App-Content").clientHeight;
-
-      setMaxImageHeight(parentHeight);
-      return;
-    }
+  const resizeImage = () => {
+    const image = imageContainerRef.current;
+    const imageWidth = image.clientWidth;
+    const imageHeight = image.clientHeight;
+    const parentHeight = document.querySelector(".App-Content").clientHeight;
 
     setMaxImageHeight("auto");
+    if (imageWidth < imageHeight && imageHeight >= parentHeight) {
+      setMaxImageHeight(parentHeight);
+    }
   };
 
   useEffect(() => {
-    //automatically adjust first image's height
-    carouselRef.current.click();
-  }, []);
+    resizeImage();
+  }, [dimensions]);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setDimensions({
+        height: window.innerHeight,
+        width: window.innerWidth
+      });
+    };
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  });
 
   return (
     <>
@@ -35,12 +50,11 @@ export default function ImageCarousel() {
         emulateTouch={true}
         infiniteLoop={true}
         showStatus={false}
-        onChange={checkImageSize}
-        onClickItem={checkImageSize}
+        onChange={resizeImage}
       >
         {demoImages.map((image, index) => (
           <div
-            ref={carouselRef}
+            ref={imageContainerRef}
             key={index}
             className="imageContainer"
             style={{ height: maxImageHeight }}
