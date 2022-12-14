@@ -1,15 +1,14 @@
-#carouselContainer {
-  margin: 0 auto;
-  height: 100%;
+.carousel-root {
   display: flex;
+  flex-direction: row;
   align-items: center;
-  justify-content: center;
+  height: 100%;
+  overflow: hidden;
 }
 
 .carousel .imageContainer {
   position: relative;
   margin: 0 auto;
-  height: 100%;
 }
 
 .carousel .slide img {
@@ -17,5 +16,13 @@
   width: auto;
   max-height: 100%;
   height: auto;
-  vertical-align: top;
+}
+
+.carousel.carousel-slider .control-arrow {
+  width: 80px;
+  height: 80px;
+  top: 50%;
+  transform: translateY(-50%);
+  margin: 0 5px;
+  border-radius: 40px;
 }

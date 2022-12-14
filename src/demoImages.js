@@ -2,17 +2,18 @@ const linkPrefix = "https://via.placeholder.com/";
 
 export const demoImages = [
   {
+    width: 350,
+    height: 800,
+    alt: "image 350x800",
+    src: linkPrefix + "350x800"
+  },
+  {
     width: 150,
     height: 150,
     alt: "image 150x150",
     src: linkPrefix + "150x150"
   },
-  {
-    width: 350,
-    height: 600,
-    alt: "image 350x600",
-    src: linkPrefix + "350x700"
-  },
+
   {
     width: 1200,
     height: 900,
