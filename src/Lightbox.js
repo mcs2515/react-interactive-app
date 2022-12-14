@@ -21,11 +21,10 @@ export default function Lightbox(props) {
 
   return (
     <div id="lightboxContainer" ref={lightBoxRef}>
-      <div id="lightbox">
-        <button id="closeLightbox" onClick={clickHandler}>
-          &#x2715;
-        </button>
-      </div>
+      <div id="lightbox"></div>
+      <button id="closeLightbox" onClick={clickHandler}>
+        &#x2715;
+      </button>
     </div>
   );
 }
