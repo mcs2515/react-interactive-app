@@ -1,4 +1,5 @@
 import { Carousel } from "react-responsive-carousel";
+import { demoImages } from "./demoImages";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import "./css/Carousel.css";
 
@@ -6,28 +7,22 @@ export default function ImageCarousel() {
   return (
     <div id="carouselContainer">
       <Carousel
-        class="imageCarousel"
         dynamicHeight={true}
         showThumbs={false}
         emulateTouch={true}
         infiniteLoop={true}
         showStatus={false}
       >
-        <div className="imageContainer">
-          <img alt="" src="https://via.placeholder.com/150" />
-        </div>
-        <div className="imageContainer">
-          <img alt="" src="https://via.placeholder.com/350x600" />
-        </div>
-        <div className="imageContainer">
-          <img alt="" src="https://via.placeholder.com/1200x900" />
-        </div>
-        <div className="imageContainer">
-          <img alt="" src="https://via.placeholder.com/835x1000" />
-        </div>
-        <div className="imageContainer">
-          <img alt="" src="https://via.placeholder.com/1600x600" />
-        </div>
+        {demoImages.map((image, index) => (
+          <div key={index} className="imageContainer">
+            <img
+              alt={image.alt}
+              src={image.src}
+              width={image.width}
+              height={image.height}
+            />
+          </div>
+        ))}
       </Carousel>
     </div>
   );
