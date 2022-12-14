@@ -16,8 +16,7 @@
 .App-Content {
   position: relative;
   margin: 0 auto;
-  max-width: 40vw;
-  max-height: 70vh;
+  max-height: 80vh;
   background-color: #282c34;
   aspect-ratio: 0.75;
   margin-top: 20px;

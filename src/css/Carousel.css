@@ -1,15 +1,13 @@
-#carouselContainer {
-  margin: 0 auto;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.carousel-root {
+  outline: none;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 .carousel .imageContainer {
   position: relative;
   margin: 0 auto;
-  height: 100%;
 }
 
 .carousel .slide img {
