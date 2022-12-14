@@ -1,0 +1,21 @@
+#carouselContainer {
+  margin: 0 auto;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.carousel .imageContainer {
+  position: relative;
+  margin: 0 auto;
+  height: 100%;
+}
+
+.carousel .slide img {
+  max-width: 100%;
+  width: auto;
+  max-height: 100%;
+  height: auto;
+  vertical-align: top;
+}
