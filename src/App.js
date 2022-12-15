@@ -1,11 +1,16 @@
 import { useState } from "react";
+import AmbientMusic from "./AmbientMusic";
 import ImageCarousel from "./Carousel";
-import "./css/App.css";
 import Lightbox from "./Lightbox";
+import "./css/App.css";
 
 function App() {
   const [showCarousel, setShowCarousel] = useState(false);
-  const carouselClickHandler = () => setShowCarousel(!showCarousel);
+
+  const carouselClickHandler = (e) => {
+    e.preventDefault();
+    setShowCarousel(!showCarousel);
+  };
 
   return (
     <div className="App">
@@ -13,6 +18,7 @@ function App() {
         <p>React Interactive App</p>
       </header>
 
+      <AmbientMusic />
       <button onClick={carouselClickHandler}>Toggle Carousel</button>
       <div className="App-Content">
         <Lightbox showCarousel={showCarousel} setShowCarousel={setShowCarousel} />
