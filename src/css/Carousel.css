@@ -9,6 +9,8 @@
 .carousel .imageContainer {
   position: relative;
   margin: 0 auto;
+  max-height: 80vh;
+  aspect-ratio: 0.75;
 }
 
 .carousel .slide img {
