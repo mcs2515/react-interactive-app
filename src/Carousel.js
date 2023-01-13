@@ -2,76 +2,71 @@ import { Carousel } from "react-responsive-carousel";
 import { demoImages } from "./demoImages";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import "./css/Carousel.css";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
 export default function ImageCarousel() {
-  const imageContainerRef = useRef();
-  const [maxImageHeight, setMaxImageHeight] = useState("auto");
-  const [dimensions, setDimensions] = useState({
-    height: window.innerHeight,
-    width: window.innerWidth
-  });
+  const padding = 5;
+  const [allImagesLoaded, setAllImagesLoaded] = useState(false);
+  const carouselRef = useRef();
 
-  const resizeImage = () => {
-    const image = imageContainerRef.current;
-    const imageWidth = image.clientWidth;
-    const imageHeight = image.clientHeight;
-    const parentHeight = document.querySelector(".App-Content").clientHeight;
+  const resizeImage = (image) => {
+    const imageWidth = image.width;
+    const imageHeight = image.height;
+    const appHeight = document.querySelector(".App-Content").clientHeight;
 
-    setMaxImageHeight("auto");
-    if (imageWidth < imageHeight && imageHeight >= parentHeight) {
-      setMaxImageHeight(parentHeight);
+    if (imageHeight > imageWidth && imageHeight > appHeight) {
+      const percentage = 100 - ((imageHeight - appHeight) / imageHeight) * 100;
+      return percentage - padding;
     }
   };
 
   useEffect(() => {
-    resizeImage();
-  }, []);
+    const cacheImage = (image) => {
+      return new Promise((resolve, reject) => {
+        const newImage = new Image();
+        newImage.src = image.src;
 
-  useEffect(() => {
-    resizeImage();
-  }, [dimensions]);
-
-  useEffect(() => {
-    const handleResize = () => {
-      setDimensions({
-        height: window.innerHeight,
-        width: window.innerWidth
+        newImage.onload = () => {
+          resolve(image.src);
+        };
+        newImage.onerror = (err) => reject(err);
       });
     };
-    window.addEventListener("resize", handleResize);
 
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  });
+    Promise.all(demoImages.map((image) => cacheImage(image)))
+      .then(setAllImagesLoaded(true))
+      .catch((err) => console.log("Failed to loade images", err));
+  }, []);
 
   return (
     <>
-      <Carousel
-        dynamicHeight={true}
-        showThumbs={false}
-        emulateTouch={true}
-        infiniteLoop={true}
-        showStatus={false}
-        onChange={resizeImage}
-      >
-        {demoImages.map((image, index) => (
-          <div
-            ref={imageContainerRef}
-            key={index}
-            className="imageContainer"
-            style={{ height: maxImageHeight }}
-          >
-            <img
-              alt={image.alt}
-              src={image.src}
-              width={image.width}
-              height={image.height}
-            />
-          </div>
-        ))}
-      </Carousel>
+      {allImagesLoaded ? (
+        <Carousel
+          ref={carouselRef}
+          dynamicHeight={true}
+          showThumbs={false}
+          emulateTouch={true}
+          infiniteLoop={true}
+          showStatus={false}
+          autoPlay={false}
+        >
+          {demoImages.map((image, index) => (
+            <div
+              key={index}
+              className="imageContainer"
+              style={{ height: resizeImage(image) + "%" }}
+            >
+              <img
+                id={index}
+                alt={image.alt}
+                src={image.src}
+                width={image.width}
+                height={image.height}
+              />
+            </div>
+          ))}
+        </Carousel>
+      ) : null}
     </>
   );
 }
