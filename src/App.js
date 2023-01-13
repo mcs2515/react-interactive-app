@@ -11,12 +11,29 @@ function App() {
 
   const carouselClickHandler = (e) => {
     e.preventDefault();
-    setShowCarousel(!showCarousel);
+
+    if (showCarousel) {
+      setShowCarousel(!showCarousel);
+    } else {
+      hideAllMedia();
+      setShowCarousel(true);
+    }
   };
 
   const videoClickHandler = (e) => {
     e.preventDefault();
-    setShowVideo(!showVideo);
+
+    if (showVideo) {
+      setShowVideo(!showVideo);
+    } else {
+      hideAllMedia();
+      setShowVideo(true);
+    }
+  };
+
+  const hideAllMedia = () => {
+    setShowCarousel(false);
+    setShowVideo(false);
   };
 
   return (
@@ -24,12 +41,12 @@ function App() {
       <header className="App-header">
         <p>React Interactive App</p>
       </header>
-
       <AmbientMusic />
-      <button onClick={carouselClickHandler}>Toggle Carousel</button>
-      <button onClick={videoClickHandler}>Toggle Video</button>
+      <button onClick={carouselClickHandler}>Show Carousel</button>
+      <button onClick={videoClickHandler}>Show Video</button>
       <div className="App-Content">
         <Lightbox showCarousel={showCarousel} setShowCarousel={setShowCarousel} />
+
         {showCarousel ? <ImageCarousel /> : null}
         {showVideo ? <Video /> : null}
       </div>
